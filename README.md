@@ -1,8 +1,22 @@
-BrainVote: Neural Decoding of Voting Intent from EEGThis repository contains the official implementation, data processing pipeline, and analysis scripts for the paper:"BrainVote: Reconstructing Face Images from Neural Voting Intentions"📄 AbstractBrainVote is a Brain-Computer Interface (BCI) framework capable of decoding explicit voting intentions from EEG signals evoked by face stimuli. By utilizing a multi-view ensemble of EEGNet models (targeting Delta, Beta, Broadband, and Late-Latency activity), we achieved a classification accuracy of 71.7% and an AUC of 0.73, significantly outperforming standard broadband baselines (p<.001).This repository provides the tools to reproduce the decoding results and statistical analyses reported in the study.🛠️ InstallationClone the repositoryBashgit clone https://github.com/yourusername/brainvote.git
+# BrainVote: Neural Decoding of Voting Intent from EEG
+
+This repository contains the official implementation, data processing pipeline, and analysis scripts for the paper:
+**"BrainVote: Reconstructing Face Images from Neural Voting Intentions"**
+
+## 📄 Abstract
+
+BrainVote is a Brain-Computer Interface (BCI) framework capable of decoding explicit voting intentions from EEG signals evoked by face stimuli. By utilizing a multi-view ensemble of EEGNet models (targeting Delta, Beta, Broadband, and Late-Latency activity), we achieved a classification accuracy of **71.7%** and an AUC of **0.73**, significantly outperforming standard broadband baselines (p<.001).
+
+This repository provides the tools to reproduce the decoding results and statistical analyses reported in the study.
+
+## 🛠️ Installation
+
+### Clone the repository
+```bash
+git clone [https://github.com/yourusername/brainvote.git](https://github.com/yourusername/brainvote.git)
 cd brainvote
-Install dependenciesWe recommend using a Conda environment to manage dependencies.Bashconda create -n brainvote python=3.8
+
+
+conda create -n brainvote python=3.8
 conda activate brainvote
 pip install -r requirements.txt
-📂 Data FormatDue to storage size limits, the full raw dataset is hosted externally.[Please insert Link to OSF/Zenodo dataset here]However, the scripts in this repository expect input data tensors of the following shape after preprocessing:Input Shape: (Trials, Channels, Timepoints, 1) -> (N, 57, 250, 1)Sampling Rate: 250 Hz (Downsampled from 1000 Hz)Epoch Length: 1000 ms (-200ms to +800ms)🚀 Usage1. Preprocessing (MATLAB/EEGLAB)The raw EEG data is preprocessed using the script located at scripts/01_preprocess.m.Filters: 1–80 Hz Bandpass, 45–55 Hz Notch.Artifacts: ICA-based rejection (EOG/EMG).Output: Cleaned .set files or .npy arrays ready for Python training.2. Training the EnsembleTo train the 4 constituent models (Broadband, Delta, Beta, Late) and generate the results run:Bashpython scripts/02_train_models.py --subject_id all --epochs 80 --batch_size 32
-Model Architecture: EEGNet (Lawhern et al., 2018)Configuration: 5-fold stratified cross-validation.Output: Saves trained metrics to results/metrics/voting_eegnet_final_detailed.pkl.3. Statistical AnalysisTo reproduce the statistical tests reported in the paper (Paired t-tests, Point-Biserial Correlation, and Binomial Tests):Bashpython scripts/04_analysis_stats.py
-Expected Output:Delta vs Beta: Significant performance difference (p<.05).Ensemble vs Broadband: Significant improvement (p<.001).Global Pooled AUC: 0.73.📊 Key ResultsThe following table summarizes the decoding performance across different model configurations.Model ConfigurationMean AUCMean AccuracyDelta (1-8 Hz)0.6468.2%Beta (8-30 Hz)0.6165.5%Broadband0.6366.8%Ensemble0.6671.7%Note: The ensemble strategy significantly outperforms individual frequency bands by integrating complementary temporal features.
