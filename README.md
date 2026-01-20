@@ -15,6 +15,7 @@ This repository provides the tools to reproduce the decoding results and statist
 ```bash
 git clone [https://github.com/yourusername/brainvote.git](https://github.com/yourusername/brainvote.git)
 cd brainvote
+```
 
 ### Install dependencies
 We recommend using a Conda environment to manage dependencies.
@@ -22,6 +23,7 @@ We recommend using a Conda environment to manage dependencies.
 conda create -n brainvote python=3.8
 conda activate brainvote
 pip install -r requirements.txt
+```
 
 ## 📂 Data Format
 Due to storage size limits, the full raw dataset is hosted externally. [Insert Link to OSF/Zenodo dataset here]
@@ -48,7 +50,7 @@ Output: Cleaned .set files or .npy arrays ready for Python training.
 To train the 4 constituent models (Broadband, Delta, Beta, Late) and generate the results, run:
 ```bash
 python scripts/02_train_models.py --subject_id all --epochs 80 --batch_size 32
-
+```
 Model: EEGNet (Lawhern et al., 2018)
 
 Configuration: 5-fold stratified cross-validation.
