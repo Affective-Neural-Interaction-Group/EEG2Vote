@@ -13,7 +13,7 @@ This repository provides the tools to reproduce the decoding results and statist
 
 ### Clone the repository
 ```bash
-git clone [https://github.com/yourusername/brainvote.git](https://github.com/yourusername/brainvote.git)
+git clone https://github.com/BrainVoteData/brainvote.git
 cd brainvote
 ```
 
@@ -32,19 +32,11 @@ However, the scripts in this repository expect input data tensors of the followi
 
 Input Shape: (Epochs, Channels, Timepoints)
 
-Sampling Rate: 250 Hz (Downsampled from 1000 Hz)
+Sampling Rate: 256 Hz (Downsampled from 1024 Hz)
 
-Epoch Length: 1000 ms (-200ms to +800ms)
 
 ## 🚀 Usage
-1. Preprocessing (MATLAB/EEGLAB)
-The raw EEG data is preprocessed using the script located at scripts/01_preprocess.m.
 
-Filters: 1–80 Hz Bandpass, 45–55 Hz Notch.
-
-Artifacts: ICA-based rejection (EOG/EMG).
-
-Output: Cleaned .set files or .npy arrays ready for Python training.
 
 2. Training the Ensemble
 To train the 4 constituent models (Broadband, Delta, Beta, Late) and generate the results, run:
