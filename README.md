@@ -1,58 +1,66 @@
-# BrainVote: Neural Decoding of Voting Intent from EEG
+# 🧠 Brainvote: A Multimodal EEG Dataset for Implicit Social Bias
 
-This repository contains the official implementation, data processing pipeline, and analysis scripts for the paper:
-**"BrainVote: Reconstructing Face Images from Neural Voting Intentions"**
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
 
-## 📄 Abstract
+**Brainvote** is a large-scale, multimodal dataset and deep learning benchmark suite designed to decode and synthesize implicit social biases using neurophysiological signals. 
 
-BrainVote is a Brain-Computer Interface (BCI) framework capable of decoding explicit voting intentions from EEG signals evoked by face stimuli. By utilizing a multi-view ensemble of EEGNet models (targeting Delta, Beta, Broadband, and Late-Latency activity), we achieved a classification accuracy of **71.7%** and an AUC of **0.73**, significantly outperforming standard broadband baselines (p<.001).
+This repository contains the preprocessing scripts, machine learning baselines (CNNs, Transformers, and Traditional ML), and data-loading utilities for the official Brainvote dataset, as detailed in our ACM Multimedia paper: *"[Insert Your Paper Title Here]"*.
 
-This repository provides the tools to reproduce the decoding results and statistical analyses reported in the study.
+## 📑 Table of Contents
+- [Overview](#-overview)
+- [Dataset Access & Formats](#-dataset-access--formats)
+- [Repository Structure](#-repository-structure)
+- [Quick Start: Loading the Data](#-quick-start-loading-the-data)
+- [Running the Benchmarks](#-running-the-benchmarks)
+- [Environment Setup](#-environment-setup)
+- [Ethical Use and License](#-ethical-use-and-license)
+- [Citation](#-citation)
 
-## 🛠️ Installation
+---
 
-### Clone the repository
-```bash
-git clone https://github.com/BrainVoteData/brainvote.git
-cd brainvote
-```
+## 🔍 Overview
+Traditional affective computing relies heavily on explicit behavioral feedback, which is vulnerable to social desirability bias. Brainvote bridges this semantic gap by capturing the continuous, millisecond-resolution brain responses of **38 participants** as they implicitly evaluate the "leadership" qualities of photorealistic human faces.
 
-### Install dependencies
-We recommend using a Conda environment to manage dependencies.
-```bash
-conda create -n brainvote python=3.8
-conda activate brainvote
-pip install -r requirements.txt
-```
+**Key Features:**
+* **Stimuli:** 1,160 highly controlled facial prototypes generated via StyleGAN3 ($z \in \mathbb{R}^{512}$).
+* **Hardware:** Synchronized 64-channel BioSemi ActiveTwo EEG (1024 Hz).
+* **Paradigms:** Rapid Serial Visual Presentation (RSVP) coupled with explicit behavioral ground-truth voting.
+* **Tasks:** Binary classification (Leader vs. Non-Leader), 4-class preference intensity, and within-subject personalization.
 
-## 📂 Data Format
-Due to storage size limits, the full raw dataset is hosted externally. [Insert Link to OSF/Zenodo dataset here]
+---
 
-However, the scripts in this repository expect input data tensors of the following shape:
+## 💾 Dataset Access & Formats
+To maximize accessibility for both cognitive neuroscientists and computer vision/ML researchers, the preprocessed data is hosted on **[Insert Zenodo/PhysioNet Link Here]** in ready-to-train NumPy archives (`.npz`). 
 
-Input Shape: (Epochs, Channels, Timepoints)
+Download the `.npz` files and place them in the `./data/` directory.
 
-Sampling Rate: 256 Hz (Downsampled from 1024 Hz)
+1. `brainvote_2class_ready.npz`: Global cross-subject dataset with binary labels (0 = Non-Leader, 1 = Leader).
+2. `brainvote_4class_ready.npz`: Global cross-subject dataset with ordinal intensity labels (0 to 3).
+3. `brainvote_within_subject_max_chans.npz`: Dynamically sized matrices preserving the absolute maximum number of clean channels for individual subject training.
 
+*(Note: Raw `.set`/`.fdt` EEGLAB files are also available upon request for researchers wishing to perform custom artifact rejection).*
 
-## 🚀 Usage
+---
 
+## 📂 Repository Structure
 
-2. Training the Ensemble
-To train the 4 constituent models (Broadband, Delta, Beta, Late) and generate the results, run:
-```bash
-python scripts/02_train_models.py --subject_id all --epochs 80 --batch_size 32
-```
-Model: EEGNet (Lawhern et al., 2018)
-
-Configuration: 5-fold stratified cross-validation.
-
-Output: Saves trained metrics to results/metrics/voting_eegnet_final_detailed.pkl.
-
-Expected Output:
-
-Delta vs Beta: Significant performance difference (p<.05).
-
-Ensemble vs Broadband: Significant improvement (p<.001).
-
-Global Pooled AUC: 0.73.
+```text
+brainvote/
+│
+├── data/                                 # Place downloaded .npz files here
+│   ├── brainvote_2class_ready.npz
+│   └── brainvote_within_subject_max_chans.npz
+│
+├── scripts_preprocessing/                # MNE-Python pipeline scripts
+│   ├── 01_make_global_dataset.py
+│   └── 02_make_within_subject_dataset.py
+│
+├── scripts_training/                     # PyTorch & Braindecode baselines
+│   ├── train_global_cnn.py
+│   ├── train_within_subject_unified.py   # EEGNet, ShallowFBCSPNet, Conformer, BIOT
+│   └── train_traditional_ml.py           # CSP+LDA, CSP+RF, PCA+SVM
+│
+├── requirements.txt                      # Python dependencies
+└── README.md
