@@ -1,12 +1,12 @@
-# 🧠 Brainvote: A Multimodal EEG Dataset for Implicit Social Bias
+# 🧠 EEG-Vote: A multimodal dataset for detecting social judgements from brain activity
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
 
-**Brainvote** is a large-scale, multimodal dataset and deep learning benchmark suite designed to decode and synthesize implicit social biases using neurophysiological signals. 
+**EEG-Vote** is a multimodal dataset and deep learning benchmark suite designed to decode and synthesize implicit social biases using neurophysiological signals. 
 
-This repository contains the preprocessing scripts, machine learning baselines (CNNs, Transformers, and Traditional ML), and data-loading utilities for the official Brainvote dataset, as detailed in our ACM Multimedia paper: *"[Insert Your Paper Title Here]"*.
+This repository contains the preprocessing scripts, machine learning baselines (CNNs, Transformers, and Traditional ML), and data-loading utilities for the official EEG-Vote dataset, as detailed in our ACM Multimedia paper: *"[Insert Your Paper Title Here]"*.
 
 ## 📑 Table of Contents
 - [Overview](#-overview)
@@ -43,6 +43,15 @@ Download the `.npz` files and place them in the `./data/` directory.
 *(Note: Raw `.set`/`.fdt` EEGLAB files are also available upon request for researchers wishing to perform custom artifact rejection).*
 
 ---
+
+## Dataset Overview (`brainvote_2class_withinsubject_ready.npz`)
+
+**Quick Facts:**
+* **Total Trials:** 73,479 paired observations
+* **Unique Subjects:** 38 participants
+* **Trials per Subject:** Average of ~[Insert Avg] ± [Insert Std] SD (Range: [Insert Min] - [Insert Max])
+* **Task:** Binary leadership election (0 = Not Chosen, 1 = Chosen)
+* **Modalities:** Continuous EEG + 512-D StyleGAN latent vectors
 
 ## 📂 Repository Structure
 
