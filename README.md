@@ -53,6 +53,30 @@ Download the `.npz` files and place them in the `./data/` directory.
 * **Task:** Binary leadership election (0 = Not Chosen, 1 = Chosen)
 * **Modalities:** Continuous EEG + 512-D StyleGAN latent vectors
 
+### Array Structure
+To accommodate varying channel counts after artifact rejection, the EEG data is stored in a subject-specific dictionary format. The generative visual features (StyleGAN latents) are paired directly with these trials.
+
+For every subject `[ID]`, the following arrays are provided:
+
+| Array Key Format | Shape | Data Type | Description |
+| :--- | :--- | :--- | :--- |
+| `Sub_[ID]_X` | `(n_trials, n_channels, 1025)` | `float32` | Continuous EEG data for the subject. Note: `n_channels` varies slightly per subject due to bad channel removal (e.g., 53 to 60 channels). `1025` represents the timepoints. |
+| `Sub_[ID]_latent` | `(n_trials, 512)` | `float32` | The 512-dimensional generative facial latent vector corresponding to the visual stimulus shown in each trial. |
+| `Sub_[ID]_y` | `(n_trials,)` | `int64` | Binary leadership vote (0 = Not Chosen, 1 = Chosen). |
+| `Sub_[ID]_ch_names`| `(n_channels,)` | `String` | The specific 10-20 EEG channel labels retained for that subject. |
+
+**Loading Example (Python):**
+```python
+import numpy as np
+
+# Load the archive
+data = np.load('brainvote_2class_withinsubject_ready.npz')
+
+# Extract paired multimodal data for Subject 13
+eeg_features = data['Sub_13_X']         # Shape: (1966, 60, 1025)
+visual_latents = data['Sub_13_latent']  # Shape: (1966, 512)
+labels = data['Sub_13_y']               # Shape: (1966,)
+
 ## 📂 Repository Structure
 
 ```text
