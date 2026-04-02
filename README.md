@@ -49,7 +49,7 @@ Download the `.npz` files and place them in the `./data/` directory.
 **Quick Facts:**
 * **Total Trials:** 73,479 paired observations
 * **Unique Subjects:** 38 participants
-* **Trials per Subject:** Average of ~[Insert Avg] ± [Insert Std] SD (Range: [Insert Min] - [Insert Max])
+* **Trials per Subject:** Average of ~ 1933.66 ± 130.53 SD (Range: 1288 - 2079)
 * **Task:** Binary leadership election (0 = Not Chosen, 1 = Chosen)
 * **Modalities:** Continuous EEG 
 
