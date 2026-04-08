@@ -26,7 +26,7 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 
 ---
 
-## The Three Pillars of EEG2Vote
+## The Three Components of EEG2Vote
 To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Google Drive](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
 
 ### 1. The Neurophysiological (EEG) Dataset
@@ -61,11 +61,7 @@ To accommodate varying channel counts after individualized artifact rejection, t
 import numpy as np
 import pandas as pd
 
-# 1. Load Behavioral Data
-behavioral_df = pd.read_csv('./data/EEG2Vote_Behavioral.csv')
-print(behavioral_df.head())
-
-# 2. Load the Single-Subject Multimodal Archive
+# Load the Single-Subject Multimodal Archive
 data = np.load('./data/eegvote_singlesub.npz')
 
 # Extract paired multimodal data for Subject 13
