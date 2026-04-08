@@ -1,12 +1,9 @@
 # 🧠 EEG2Vote: A Multimodal Dataset for Detecting Social Judgments from Brain Activity
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
 
 **EEG2Vote** is a large-scale multimodal dataset and machine learning benchmark suite designed to decode the implicit social biases and subjective leadership preferences of individuals directly from neural signals. 
 
-## 📑 Table of Contents
+## Table of Contents
 - [Overview](#-overview)
 - [The Three Pillars of EEG2Vote](#-the-three-pillars-of-eeg2vote)
 - [Dataset Array Structure](#-dataset-array-structure-eegvote_singlesubnpz)
@@ -17,7 +14,7 @@
 
 ---
 
-## 🔍 Overview
+## Overview
 Traditional affective computing relies heavily on explicit behavioral feedback, which is vulnerable to social desirability bias. EEG2Vote bridges this semantic gap by capturing the continuous, millisecond-resolution brain responses of **38 participants** as they implicitly evaluate the "leadership" qualities of photorealistic human faces.
 
 **Key Features:**
@@ -29,7 +26,7 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 
 ---
 
-## 💾 The Three Pillars of EEG2Vote
+## The Three Pillars of EEG2Vote
 To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Google Drive](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
 
 ### 1. The Neurophysiological (EEG) Dataset
@@ -37,15 +34,15 @@ To maximize accessibility for cognitive neuroscientists, computer vision experts
 * **`eegvote_crosssub.npz`:** Global dataset fused for cross-subject generalization tasks.
 * **`eegdata(set).zip`:** Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
 
-### 2. The Independent Vision Dataset
-* **`eegvote_visual_dataset.npz`:** A standalone Computer Vision benchmark containing the visual stimuli and their corresponding binary leadership labels. The generative visual features (512D StyleGAN latents) are paired directly with these trials, allowing for pure deep-learning facial analysis without requiring EEG expertise.
+### 2. The Vision Dataset
+* **`eegvote_visual_dataset.npz`:** A standalone Computer Vision benchmark containing the visual stimuli and their corresponding binary leadership labels. Visual stimulus images are paired with these trials, allowing for pure deep-learning facial analysis without requiring EEG expertise.
 
 ### 3. The Behavioral & Implicit Dataset
-* **`EEG2Vote_Behavioral.csv`:** Hosted directly in the `/data/` folder of this repository. Contains explicit post-experiment Likert-scale evaluations of candidate *Competence*, *Trustworthiness*, and *Likeability*, alongside Implicit Association Test (IAT) scores and subject demographics.
+* **behavior_voting/ (Folder)**: Contains explicit post-experiment Likert-scale evaluations of candidate Competence, Trustworthiness, and Likeability, alongside Implicit Association Test (IAT) scores and subject demographics.
 
 ---
 
-## 📊 Dataset Array Structure (`eegvote_singlesub.npz`)
+## Dataset Array Structure (`eegvote_singlesub.npz`)
 
 To accommodate varying channel counts after individualized artifact rejection, the EEG data is stored in a subject-specific dictionary format. For every subject `[ID]`, the following arrays are provided:
 
@@ -58,7 +55,7 @@ To accommodate varying channel counts after individualized artifact rejection, t
 
 ---
 
-## 🚀 Quick Start: Loading the Data
+## Quick Start: Loading the Data
 
 ```python
 import numpy as np
