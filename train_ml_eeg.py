@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 # ==========================================
 # 1. SETUP & CONFIGURATION
 # ==========================================
-DATA_FILE = '/home/yc47480/brainvote/dataset/eeg2vote_withinsub.npz'
+DATA_FILE = '/home/yc47480/brainvote/dataset/eeg2vote_singlesub.npz'
 RESULTS_FILE = 'results_eeg_ML_REAL_DATA.csv'
 
 print(f"--- Brainvote: FAST EEG REAL DATA EVALUATION (Traditional ML) ---")
