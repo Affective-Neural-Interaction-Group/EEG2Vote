@@ -14,8 +14,8 @@ from braindecode.models import EEGNet, ShallowFBCSPNet, EEGConformer, BIOT
 # ==========================================
 # 1. SETUP & DATA LOADING
 # ==========================================
-DATA_FILE = 'eeg2vote_withinsub.npz'
-RESULTS_FILE = 'results_within_subject_all_models.csv'
+DATA_FILE = 'eeg2vote_singlesub.npz'
+RESULTS_FILE = 'results_single_subject_all_models.csv'
 SFREQ = 1024
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
