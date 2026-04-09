@@ -31,9 +31,9 @@ To maximize accessibility for cognitive neuroscientists, computer vision experts
 ### 1. The EEG Dataset
 ```
 EEG_datasets/
-├── **`eeg2vote_singlesub.npz`:** Single-subject isolated datasets for individualized cognitive modeling.
-├── **`eeg2vote_crosssub.npz`:** Global dataset fused for cross-subject generalization tasks.
-└── **`eegdata(set).zip`:** Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
+├── eeg2vote_singlesub.npz: Single-subject isolated datasets for individualized cognitive modeling.
+├── eeg2vote_crosssub.npz`: Global dataset fused for cross-subject generalization tasks.
+└── eegdata(set).zip: Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
 ```
 
 * Example Dataset Array Structure (`eegvote_singlesub.npz`) 
@@ -100,3 +100,17 @@ print(f"Subject 13 loaded: {eeg_features.shape[0]} trials ready for training.")
 ```
 
 ## Running the Benchmarks
+
+### EEG Benchmarks
+These scripts utilize the EEG data (eegvote_singlesub.npz and eegvote_crosssub.npz) to predict subjective leadership choices from brainwaves.
+
+Run Traditional Machine Learning Baselines:
+```python scripts/train_traditional_ml_eeg.py```
+
+Run Deep Learning Neural Decoding:
+```python scripts/train_dl_eeg.py ```
+
+### Vision Benchmarks
+
+Run Resnet Example: 
+```python scripts/train_resnet_visual.py ```
