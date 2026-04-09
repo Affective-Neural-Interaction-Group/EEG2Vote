@@ -1,3 +1,7 @@
+# Dataset Link (Quick Access for Reviewers)
+ **[https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** 
+
+---
 # 🧠 EEG2Vote: A Multimodal Dataset for Detecting Social Judgments from Brain Activity
 
 
@@ -25,8 +29,8 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 
 ---
 
-## The Three Main Components of EEG2Vote
-To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Google Drive](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
+## The Three Main Components of EEG2Vote 
+To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Dataset Link](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
 
 ### 1. The EEG Dataset
 ```
