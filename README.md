@@ -29,13 +29,14 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Google Drive](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
 
 ### 1. The EEG Dataset
-*
+```
 EEG_datasets/
 ├── **`eeg2vote_singlesub.npz`:** Single-subject isolated datasets for individualized cognitive modeling.
 ├── **`eeg2vote_crosssub.npz`:** Global dataset fused for cross-subject generalization tasks.
 └── **`eegdata(set).zip`:** Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
+```
 
-* Example Dataset Array Structure (`eegvote_singlesub.npz`) *
+* Example Dataset Array Structure (`eegvote_singlesub.npz`) 
 
 To accommodate varying channel counts after individualized artifact rejection, the EEG data are stored in a subject-specific dictionary format. For every subject `[ID]`, the following arrays are provided:
 
@@ -49,15 +50,17 @@ To accommodate varying channel counts after individualized artifact rejection, t
 ---
 
 ### 2. The Vision Dataset
-*
+```
 EEG2Vote_vision_dataset/
 ├── subject_trials_labels.csv # Trial IDs, subject IDs, and vote labels
 ├── images/                  # Folder for .jpg image files (e.g., 443.jpg)
 └── eeg2vote_visual_data.npz
+```
 
 ### 3. The Behavioral Dataset
 * **behavior_voting/ (Folder)**: Contains explicit post-experiment Likert-scale evaluations of candidate Competence, Trustworthiness, and Likeability, alongside Implicit Association Test (IAT) scores and subject demographics.
-* 
+
+```
 behavioral_voting/
 ├── demographics/
 │   └── subject_demographics.csv    # Subject age and sex
@@ -70,7 +73,7 @@ behavioral_voting/
 └── voting/
     ├── face_annotations.csv        # Face ID, age/sex metadata, and subject voting data
     └── feedbackdata                # Competence, likeability, and trustworthiness scores
----
+```
 
 
 ## Quick Start: Loading the Data
