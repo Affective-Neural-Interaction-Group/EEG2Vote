@@ -84,6 +84,8 @@ git clone https://github.com/Affective-Neural-Interaction-Group/EEG2Vote/
 cd EEG2Vote
 conda env create -f environment.yml --name eeg2vote
 ```
+
+### Load EEG Data
 ```python
 import numpy as np
 import pandas as pd
@@ -98,6 +100,19 @@ labels = data['Sub_13_y']               # Shape: (1966,)
 channels = data['Sub_13_ch_names']      # Shape: (60,)
 
 print(f"Subject 13 loaded: {eeg_features.shape[0]} trials ready for training.")
+```
+
+### Load Vision Data
+```python
+import numpy as np
+
+# Load the highly-compressed image archive
+data = np.load('./data/eeg2vote_visual_data.npz')
+
+X_images = data['X_images']  
+y_votes = data['y_votes']    
+
+print(f"Successfully loaded {X_images.shape[0]} images ready for training.")
 ```
 
 ## Running the Benchmarks
