@@ -81,7 +81,7 @@ behavioral_voting/
 ### Experiment Setup
 git clone https://github.com/Affective-Neural-Interaction-Group/EEG2Vote/
 cd EEG2Vote
-pip install -r requirements.txt
+conda env create -f environment.yml --name eeg2vote
 
 ```python
 import numpy as np
