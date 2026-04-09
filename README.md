@@ -79,10 +79,11 @@ behavioral_voting/
 ## Quick Start: Loading the Data
 
 ### Experiment Setup
+```
 git clone https://github.com/Affective-Neural-Interaction-Group/EEG2Vote/
 cd EEG2Vote
 conda env create -f environment.yml --name eeg2vote
-
+```
 ```python
 import numpy as np
 import pandas as pd
