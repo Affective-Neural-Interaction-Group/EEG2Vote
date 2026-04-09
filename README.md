@@ -5,9 +5,8 @@
 
 ## Table of Contents
 - [Overview](#-overview)
-- [The Three Pillars of EEG2Vote](#-the-three-pillars-of-eeg2vote)
+- [The Three Main Components of EEG2Vote](#-the-three-pillars-of-eeg2vote)
 - [Dataset Array Structure](#-dataset-array-structure-eegvote_singlesubnpz)
-- [Repository Structure](#-repository-structure)
 - [Quick Start: Loading the Data](#-quick-start-loading-the-data)
 - [Running the Benchmarks](#-running-the-benchmarks)
 - [Citation](#-citation)
@@ -26,25 +25,18 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 
 ---
 
-## The Three Components of EEG2Vote
+## The Three Main Components of EEG2Vote
 To maximize accessibility for cognitive neuroscientists, computer vision experts, and behavioral psychologists, the preprocessed data is hosted via **[Google Drive](https://drive.google.com/drive/folders/18gVJZP-H299PuMsJClqoyGoCygRtQtqz?usp=drive_link)** in ready-to-train formats. Download the files and place them in the `./data/` directory.
 
-### 1. The Neurophysiological (EEG) Dataset
-* **`eegvote_singlesub.npz`:** Single-subject isolated datasets for individualized cognitive modeling.
-* **`eegvote_crosssub.npz`:** Global dataset fused for cross-subject generalization tasks.
-* **`eegdata(set).zip`:** Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
+### 1. The EEG Dataset
+* EEG_datasets/
+├── **`eeg2vote_singlesub.npz`:** Single-subject isolated datasets for individualized cognitive modeling.
+├── **`eeg2vote_crosssub.npz`:** Global dataset fused for cross-subject generalization tasks.
+└── **`eegdata(set).zip`:** Raw `.set` EEGLAB files for researchers wishing to perform custom artifact rejection, filtering, or epoching.
 
-### 2. The Vision Dataset
-* **`eegvote_visual_dataset.npz`:** A standalone Computer Vision benchmark containing the visual stimuli and their corresponding binary leadership labels. Visual stimulus images are paired with these trials, allowing for pure deep-learning facial analysis without requiring EEG expertise.
+* Example Dataset Array Structure (`eegvote_singlesub.npz`) *
 
-### 3. The Behavioral & Implicit Dataset
-* **behavior_voting/ (Folder)**: Contains explicit post-experiment Likert-scale evaluations of candidate Competence, Trustworthiness, and Likeability, alongside Implicit Association Test (IAT) scores and subject demographics.
-
----
-
-## Dataset Array Structure (`eegvote_singlesub.npz`)
-
-To accommodate varying channel counts after individualized artifact rejection, the EEG data is stored in a subject-specific dictionary format. For every subject `[ID]`, the following arrays are provided:
+To accommodate varying channel counts after individualized artifact rejection, the EEG data are stored in a subject-specific dictionary format. For every subject `[ID]`, the following arrays are provided:
 
 | Array Key Format | Shape | Data Type | Description |
 | :--- | :--- | :--- | :--- |
@@ -55,7 +47,35 @@ To accommodate varying channel counts after individualized artifact rejection, t
 
 ---
 
+### 2. The Vision Dataset
+* EEG2Vote_vision_dataset/
+├── subject_trials_labels.csv # Trial IDs, subject IDs, and vote labels
+├── images/                  # Folder for .jpg image files (e.g., 443.jpg)
+└── eeg2vote_visual_data.npz
+
+### 3. The Behavioral Dataset
+* **behavior_voting/ (Folder)**: Contains explicit post-experiment Likert-scale evaluations of candidate Competence, Trustworthiness, and Likeability, alongside Implicit Association Test (IAT) scores and subject demographics.
+behavioral_voting/
+├── demographics/
+│   └── subject_demographics.csv    # Subject age and sex
+├── iat/
+│   ├── IAT_react.csv               # Mean response ordinals for IAT questions
+│   ├── IAT_Questionnaires.csv       # IAT questionnaire items and count stats
+│   ├── IAT_Questionnaires_rating.csv # Detailed prejudice and sexism ratings
+│   ├── IAT_stats.csv               # Mean response times and IAT scores per subject
+│   └── IATAllTrials.csv            # Raw trial-level data for IAT leadership experiment
+└── voting/
+    ├── face_annotations.csv        # Face ID, age/sex metadata, and subject voting data
+    └── feedbackdata                # Competence, likeability, and trustworthiness scores
+---
+
+
 ## Quick Start: Loading the Data
+
+### Experiment Setup
+git clone https://github.com/Affective-Neural-Interaction-Group/EEG2Vote/
+cd EEG2Vote
+pip install -r requirements.txt
 
 ```python
 import numpy as np
@@ -71,3 +91,6 @@ labels = data['Sub_13_y']               # Shape: (1966,)
 channels = data['Sub_13_ch_names']      # Shape: (60,)
 
 print(f"Subject 13 loaded: {eeg_features.shape[0]} trials ready for training.")
+
+
+## Running the Benchmarks
