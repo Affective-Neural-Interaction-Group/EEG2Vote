@@ -106,12 +106,12 @@ print(f"Subject 13 loaded: {eeg_features.shape[0]} trials ready for training.")
 These scripts utilize the EEG data (eegvote_singlesub.npz and eegvote_crosssub.npz) to predict subjective leadership choices from brainwaves.
 
 Run Traditional Machine Learning Baselines:
-```python scripts/train_traditional_ml_eeg.py```
+```python train_ml_eeg.py```
 
 Run Deep Learning Neural Decoding:
-```python scripts/train_dl_eeg.py ```
+```python train_dl_eeg.py ```
 
 ### Vision Benchmarks
 
 Run Resnet Example: 
-```python scripts/train_resnet_visual.py ```
+```python train_resnet_visual.py ```
