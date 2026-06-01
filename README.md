@@ -25,7 +25,7 @@ Traditional affective computing relies heavily on explicit behavioral feedback, 
 * **Hardware:** Synchronized 64-channel BioSemi ActiveTwo EEG (1024 Hz).
 * **Paradigms:** Rapid Serial Visual Presentation (RSVP) coupled with explicit behavioral ground-truth voting.
 * **Tasks:** Binary classification (0 = Non-Leader, 1 = Leader).
-* **Scale:** 73,479 total paired trials.
+* **Scale:** 67452 total paired trials.
 
 ---
 
